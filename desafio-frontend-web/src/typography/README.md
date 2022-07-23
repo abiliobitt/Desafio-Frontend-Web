@@ -79,7 +79,7 @@ Neste mesmo diretório, dentro de [/components](./components) você encontrará 
 <br/>
 
 ### **1.a. Propriedades dos componentes:**
-Todos os componentes de texto permitem a escolha da cor da fonte através do atributo `color` que deve ser passado *dentro da tag* através de uma das strings especificadas na seção [Cores](#cores).
+Todos os componentes de texto permitem a escolha da cor da fonte através do atributo `color` que deve ser passado como propriedade **dentro da tag** através de uma das strings especificadas na seção [Cores](#cores).
 
 Importante notar que em alguns casos específicos a cor de fundo do elemento textual também é modificada do padrão `#fff` para favorecer o contraste do texto.
 
@@ -130,7 +130,7 @@ Além de `color`, o elemento `<BodyM>` possui a propriedade `bold`, que por padr
 ---
 
 ## 3. Exemplos:
-A seguir, você encontra um exemplo de aplicação para cada um dos [Componentes](#componentes) tipográficos com variadas [Cores](#cores):
+A seguir, você encontra um exemplo de aplicação para cada um dos [Componentes](#componentes) tipográficos com variadas [Cores](#cores), a cor de fundo foi escolhida apenas para efeitos de contraste:
 
 ``` jsx
 import './App.css';

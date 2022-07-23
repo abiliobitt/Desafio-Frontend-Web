@@ -1,8 +1,8 @@
-import { useState } from "react";
-import axios from "axios";
-import { BASE_API_URL, API_RATING, ratingBody } from "../../../services/api";
+import { useState, useLayoutEffect } from "react";
+import { ratingPOST } from "../../../services/api";
 
 import Card from "../../components/card/Card";
+import InputTextError from "../../components/input-text-error/InputTextError";
 import styles from "./NPS.module.css";
 import logo from "../../../assets/images/serasa-logo-full.svg";
 import HeadingXS from "../../../typography/components/HeadingXS/HeadingXS";
@@ -18,38 +18,38 @@ function NPS() {
   const [hover, setHover] = useState(0);
   const [name, setName] = useState("");
   const [nameTouched, setNameTouched] = useState(false);
+  const [nameLength, setNameLength] = useState(false);
   const [nameValid, setNameValid] = useState(false);
   const [comment, setComment] = useState("");
   const [processing, setProcessing] = useState(false);
   const [successful, setSuccessful] = useState(false);
   const [error, setError] = useState(false);
+  const [submit, setSubmit] = useState(false);
 
   const re = RegExp(/^[A-Za-z ]*$/);
 
   function onSubmit(evt) {
     evt.preventDefault();
     setProcessing(true);
-    let body = new ratingBody(rating, name, comment);
-    axios
-      .post(`${BASE_API_URL}${API_RATING}`, JSON.stringify(body))
-      .then((res) => {
-        setProcessing(false);
-        setSuccessful(true);
-        setTimeout(() => {
-          setSuccessful(false);
-          window.location.reload();
-        }, 3000);
-        return;
-      })
-      .catch((err) => {
-        setProcessing(false);
-        setError(true);
-        setTimeout(() => {
-          setError(false);
-        }, 3000);
-        return;
-      });
+    ratingPOST(rating, name, comment, setProcessing, setSuccessful, setError);
   }
+
+  useLayoutEffect(() => {
+    if (nameTouched) {
+      if (name.trim().length >= 3) {
+        setNameLength(true);
+        setNameValid(re.test(name));
+      } else {
+        setNameLength(false);
+        setNameValid(false);
+      }
+    }
+    if (rating && nameValid) {
+      setSubmit(true);
+    } else {
+      setSubmit(false);
+    }
+  }, [name, nameTouched, nameValid, rating, re]);
 
   return (
     <Card className={styles.NPS}>
@@ -74,7 +74,7 @@ function NPS() {
 
           <div className={styles.NPS_input}>
             <label htmlFor="name">
-              <HeadingXS color={nameTouched && !nameValid ? "accent" : ""}>
+              <HeadingXS color={!nameValid && nameTouched ? "accent" : ""}>
                 Nome*
               </HeadingXS>
             </label>
@@ -84,23 +84,10 @@ function NPS() {
               name="name"
               maxLength="120"
               value={name}
-              onChange={(e) => {
-                setName(e.target.value);
-              }}
-              onBlur={() => {
-                setNameValid(re.test(name) && name.trim().length >= 3);
-                setNameTouched(true);
-              }}
+              onChange={(e) => setName(e.target.value)}
+              onBlur={() => setNameTouched(true)}
             ></input>
-            {nameTouched && !nameValid ? (
-              <BodyM color="accent">
-                {name.trim().length >= 3
-                  ? "*Nome contém caracteres inválidos!"
-                  : "*Nome muito curto!"}
-              </BodyM>
-            ) : (
-              ""
-            )}
+            <InputTextError isTouched={nameTouched} isValid={nameValid} isEmpty={!name.trim().length?true:false} isLength={nameLength} />
           </div>
 
           <div className={styles.NPS_input}>
@@ -120,7 +107,7 @@ function NPS() {
           <button
             className={styles.NPS_submitButton}
             type="submit"
-            disabled={!nameValid || !rating}
+            disabled={!submit}
           >
             <BodyM color="light-solid" bold>
               Enviar avaliação
