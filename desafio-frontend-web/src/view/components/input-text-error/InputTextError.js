@@ -2,6 +2,7 @@
 import BodyM from "../../../typography/components/BodyM/BodyM";
 
 export default function InputTextError({
+  fieldName,
   isTouched,
   isValid,
   isEmpty,
@@ -14,10 +15,10 @@ export default function InputTextError({
       ) : (
         <BodyM color="accent">
           {isEmpty
-            ? "*Nome vazio!"
+            ? `*${fieldName} vazio!`
             : isLength
-            ? "*Nome contém caracteres inválidos!"
-            : "*Nome muito curto!"}
+            ? `*${fieldName} contém caracteres inválidos!`
+            : `*${fieldName} muito curto!`}
         </BodyM>
       )}
     </>
