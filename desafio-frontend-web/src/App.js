@@ -1,4 +1,3 @@
-import "./App.css";
 import axios from "axios";
 import { useEffect } from "react";
 import { BASE_API_URL } from "./services/api.js";
