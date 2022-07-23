@@ -1,0 +1,14 @@
+.Content {
+    min-height: 80vh;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+
+    position: relative;
+    margin-top: var(--unit-default-margin-top);
+    padding: var(--units-content-padding-lateral);
+    background-color: var(--color-background-white);
+}
