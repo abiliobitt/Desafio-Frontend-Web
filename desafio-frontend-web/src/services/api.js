@@ -35,9 +35,7 @@ export function ratingPOST(
       return;
     })
     .catch(() => {
-      setTimeout(() => {
-        setProcessing(false);
-      }, 200);
+      setProcessing(false);
       setError(true);
       setTimeout(() => {
         setError(false);
