@@ -6,4 +6,4 @@ Hoje na Serasa utilizamos várias tecnologias e queremos sempre inovar e melhora
 
 ## Sobre o exercício
 
-Na sua arquitetura proposta precisa levar em consideração alguns problemas e desafios que enfrentamos: volumetria, baixo tempo de carregamento das páginas, melhor experiência para o consumidor, além de trabalhar com um time de mais de 20 frontends em um mesmo projeto. Para esse exercício você pode nos entregar um [markdown](../DELIVERY.md) sobre a sua arquitetura, tecnologias e práticas.
+Na sua arquitetura proposta precisa levar em consideração alguns problemas e desafios que enfrentamos: <a name="pontos_de_atenção">volumetria, baixo tempo de carregamento das páginas, melhor experiência para o consumidor, além de trabalhar com um time de mais de 20 frontends em um mesmo projeto.</a> Para esse exercício você pode nos entregar um [markdown](../DELIVERY.md) sobre a sua arquitetura, tecnologias e práticas.
