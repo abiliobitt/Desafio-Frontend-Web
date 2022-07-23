@@ -87,7 +87,7 @@ function NPS() {
               onChange={(e) => setName(e.target.value)}
               onBlur={() => setNameTouched(true)}
             ></input>
-            <InputTextError isTouched={nameTouched} isValid={nameValid} isEmpty={!name.trim().length?true:false} isLength={nameLength} />
+            <InputTextError fieldName="Nome" isTouched={nameTouched} isValid={nameValid} isEmpty={!name.trim().length?true:false} isLength={nameLength} />
           </div>
 
           <div className={styles.NPS_input}>
